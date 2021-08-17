@@ -34,6 +34,7 @@ dev_dependencies:
     sdk: flutter
   flutter_local_notifications: ^8.1.1+1
   rxdart: ^0.27.1
+  flutter_app_badger: ^1.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

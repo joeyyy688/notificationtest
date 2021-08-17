@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notificationtest/notification_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: "Just a test",
         payload: "payloadTest.com",
         title: "TestNotification");
+    FlutterAppBadger.updateBadgeCount(1);
   }
 
   @override
@@ -49,13 +51,16 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     NotificationService.init();
     listenNotifications();
+    FlutterAppBadger.removeBadge();
   }
 
   void listenNotifications() =>
       NotificationService.onNotifications.stream.listen(onClickedNotification);
 
-  void onClickedNotification(String? payload) =>
-      print("notificationTappedFromMain.dartPage");
+  void onClickedNotification(String? payload) {
+    FlutterAppBadger.removeBadge();
+    print("notificationTappedFromMain.dartPage");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ElevatedButton(
+                onPressed: () {
+                  FlutterAppBadger.removeBadge();
+                },
+                child: Text("test"))
           ],
         ),
       ),
