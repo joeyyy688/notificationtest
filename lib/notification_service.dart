@@ -22,7 +22,7 @@ class NotificationService {
   }
 
   static Future init({bool initScheduled = false}) async {
-    final android = AndroidInitializationSettings('mipmap/ic_launcher');
+    final android = AndroidInitializationSettings('testimage');
     final ios = IOSInitializationSettings();
     final macOS = MacOSInitializationSettings();
     final settings =
